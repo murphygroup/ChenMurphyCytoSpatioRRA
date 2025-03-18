@@ -1,3 +1,19 @@
+# List of required packages
+required_packages <- c(
+  "spatstat", "spatstat.utils", "spatstat.data", "dplyr", 
+  "permute", "data.table", "gtools", "ggplot2"
+)
+
+# Identify missing packages
+missing_packages <- required_packages[!(required_packages %in% installed.packages()[, "Package"])]
+
+# Install missing packages
+if (length(missing_packages) > 0) {
+  install.packages(missing_packages, dependencies = TRUE)
+}
+
+
+
 library(spatstat)
 library(spatstat.utils)
 library(spatstat.data)

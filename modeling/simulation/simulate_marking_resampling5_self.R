@@ -70,7 +70,7 @@ data_dir = '/home/haoranch/projects/HuBMAP/ppm/HUBMAP_DATA_new'
 
 set.seed(3)
 
-load(file = file.path(data_dir, TMC, tissue, paste('coef_', cluster_num, '_100-', radius, '_', hr, '_', intensity_type, '_across3_', img_idx, '_self_dummy_grid_eps_20.Rda', sep = '')))
+load(file = file.path(data_dir, TMC, tissue, paste('coef_', cluster_num, '_100-', radius, '_', hr, '_', intensity_type, '_across3_', img_idx, '_self_quad_d_no_between_dummy.Rda', sep = '')))
 load(file = file.path(data_dir, TMC, tissue, paste('cell_list_', cluster_num, '_', intensity_type, '_across3_', img_idx, '.Rda', sep = '')))
 
 
@@ -180,7 +180,7 @@ if (resample_num != 0){
 marked_simulated_pattern = list()
 marked_simulated_pattern[[1]] = ppp(c(pattern_exist[,1]), c(pattern_exist[,2]), window = cell_pattern_window, marks = factor(pattern_exist[,3], levels = types))
 
-filename1 = file.path(data_dir, TMC, tissue, 'resample', paste('marked_simulated_pattern_', cluster_num, '_', radius, '_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', resample_percent, '_self_dummy_grid_eps_20.Rda', sep = ''))
+filename1 = file.path(data_dir, TMC, tissue, 'resample', paste('marked_simulated_pattern_', cluster_num, '_', radius, '_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', resample_percent, '_self_quad_d_no_between_dummy.Rda', sep = ''))
 
 save(marked_simulated_pattern, file = filename1)
 

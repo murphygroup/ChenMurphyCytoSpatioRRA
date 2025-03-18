@@ -1,5 +1,4 @@
-args = commandArgs(TRUE)
-data_dir = argv[1]
+data_dir = '/home/haoranch/projects/HuBMAP/ppm/HUBMAP_DATA_new'
 for (img_idx in 1:30){
 for (radius in c(100,200,300,400,500)){
   for (tissue in c('LN','SPLEEN','THYMUS','LI','SI')) {
@@ -18,7 +17,11 @@ if (file.exists(file.path(data_dir, TMC, tissue, 'resample', paste('marked_simul
               
               if (file.exists(file.path(data_dir, TMC, tissue, 'resample', paste('quad_', cluster_num, '_100-500_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', resample_percent, '_self_dummy_grid_eps_20.Rda', sep = ''))) == F){
 if (file.exists(file.path(data_dir, TMC, tissue, 'resample', paste('quad_', cluster_num, '_', radius ,'_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', resample_percent, '_self_dummy_grid_eps_20.Rda', sep = ''))) == F){
-              system(paste('Rscript ./modeling/simulation/multipp_across3_single_image_resample5_self.R ', tissue, ' ', intensity_type, ' ', cluster_num, ' ', radius, ' ', hr, ' ', img_idx, ' ', resample_percent, ' &', sep = ''))
+print(file.path(data_dir, TMC, tissue, 'resample', paste('quad_', cluster_num, '_', radius, '_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', resample_percent, '.out', sep = '')))
+#if (T){
+              #if (file.exists(file.path(data_dir, TMC, tissue, 'resample', paste('quad_', cluster_num, '_', radius, '_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', total_resample5_num, '_', resample_percent, '.out', sep = ''))) == F){
+	      #print(paste('srun -p pool1,model1,model2,model3,pool3-bigmem -t 72:00:00 -o ', file.path(data_dir, TMC, tissue, 'resample', paste('quad_', cluster_num, '_', radius, '_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', total_resample5_num, '_', resample_percent, '.out', sep = '')), ' -n 1 -c 4 --mem 46G Rscript multipp_across3_single_image_resample.R ', tissue, ' ', intensity_type, ' ', cluster_num, ' ', radius, ' ', hr, ' ', img_idx, ' ', total_resample5_num, ' ', resample_percent, ' &', sep = ''))	
+              system(paste('srun -p pool1,model1,model2,model3,pool3-bigmem,gpu -t 12:00:00 -o ', file.path(data_dir, TMC, tissue, 'resample', paste('quad_', cluster_num, '_', radius, '_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', resample_percent, '_self.out', sep = '')), ' -n 1 -c 8 --mem 46G Rscript multipp_across3_single_image_resample5_self.R ', tissue, ' ', intensity_type, ' ', cluster_num, ' ', radius, ' ', hr, ' ', img_idx, ' ', resample_percent, ' &', sep = ''))              
 }
 }
               }
