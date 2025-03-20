@@ -68,7 +68,10 @@ for (tissue in tissue_list) {
       axis.title.y = element_blank(),
       legend.title = element_text(size = 14),
       legend.text = element_text(size = 14),
-      legend.key.size = unit(1, "cm")
+      legend.key.size = unit(1, "cm"),
+      panel.grid.major = element_blank(), 
+      panel.grid.minor = element_blank(), 
+      panel.background = element_blank() 
     )
   
   # Combine plots
@@ -87,7 +90,7 @@ for (i in c(2, 3, 5)) {
 }
 
 # Save the final plot
-output_path <- "./fig/Fig_3_all_tissue_devi_100-500_rerun.png"
+output_path <- "Fig_3_all_tissue_devi_100-500_rerun.png"
 png(filename = output_path, width = 4500, height = 3000, res = 500)
 print(p_total)
 

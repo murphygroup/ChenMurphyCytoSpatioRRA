@@ -96,5 +96,5 @@ for (i in c(2, 3, 5)) {
 }
 
 # Save plot
-output_path <- "./fig/Fig_4_AUCROC_tissue_vs_other_tissues_AUCROC_no_dummy.png"
+output_path <- "Fig_4_AUCROC_tissue_vs_other_tissues_AUCROC_no_dummy.png"
 ggsave(filename = output_path, plot = p_total, dpi = 500, width = 6, height = 5)

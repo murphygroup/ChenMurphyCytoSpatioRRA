@@ -78,5 +78,5 @@ p <- ggplot(data = devi_df, aes(x = tissue, y = devi, color = cat)) +
   )
 
 # Save the plot
-ggsave(filename = "./fig/Fig_2_shuf_on_other_shuf_no_dummy.png",
+ggsave(filename = "Fig_2_shuf_on_other_shuf_no_dummy.png",
        plot = p, dpi = 500, width = 8, height = 5)
