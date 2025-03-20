@@ -18,7 +18,7 @@ def clip_polygon_to_box(polygon, xmin, xmax, ymin, ymax):
 
 # Configuration
 tissue_list = ['LI', 'SI', 'THYMUS', 'LN', 'SPLEEN']
-resample_percent_list = [100]
+resample_percent_list = [200]
 colors = ['green', 'magenta', 'cyan', 'red', 'yellow']
 buffer_distance = 20
 cell_num = 10000
@@ -68,6 +68,6 @@ for resample_percent in resample_percent_list:
         ax.axis('off')
 
         # Save figure
-        save_path = f"./fig/{tissue}_{resample_percent}_global_random_resample.png"
+        save_path = f"{tissue}_global_random_resample.png"
         plt.savefig(save_path, dpi=500, bbox_inches='tight', pad_inches=0, facecolor=fig.get_facecolor(), edgecolor='none')
         plt.close()

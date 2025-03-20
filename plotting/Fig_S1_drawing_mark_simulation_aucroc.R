@@ -75,5 +75,5 @@ p_total[[2]] <- p_total[[2]] + theme(axis.title.y=element_blank())
 p_total[[3]] <- p_total[[3]] + theme(axis.title.y=element_blank())
 p_total[[5]] <- p_total[[5]] + theme(axis.title.y=element_blank())
 
-ggsave(filename=file.path("./fig", "Fig_S1_AUCROC_simulation_random_resample5_new_datasets_new.png"), 
+ggsave(filename=file.path("Fig_S1_AUCROC_simulation_random_resample5_new_datasets_new.png"), 
        plot=p_total, dpi=500, width=8, height=8)
