@@ -8,7 +8,7 @@ idx = 0
 # Loop through random seeds
 for (random_seed in 1:5) {
   # Loop through radius values
-  for (radius in c(500)) {
+  for (radius in c(100, 200, 300, 400, 500)) {
     # Loop through tissue types
     for (tissue in c("SPLEEN", "LN", "LI", "THYMUS", "SI")) {
       for (cluster_num in 5:5) {
@@ -19,7 +19,7 @@ for (random_seed in 1:5) {
             TMC = if (tissue == "LI" | tissue == "SI") "Stanford" else "Florida"
             
             # Loop through resample percentages
-            for (resample_percent in c(100, 200, 300, 400, 500, 600, 700)) {
+            for (resample_percent in c(0, 100, 200, 300, 400, 500, 600, 700)) {
               
               # Define input file path
               file_path = file.path(
@@ -35,36 +35,33 @@ for (random_seed in 1:5) {
               # Check if the file exists
               if (file.exists(file_path)) {
                 
-                # Define prediction output file path
+                # Define output file path
                 file_path = file.path(
                   data_dir, TMC, tissue, "random_resample",
                   paste(
-                    "pred_cell_type_", cluster_num, "_500_", hr, "_", intensity_type, 
-                    "_across3_resample5_percentage_", resample_percent, "_seed_", 
-                    random_seed, "_self_quad_d_no_between_dummy.Rda",
+                    "quad_", cluster_num, "_", radius, "_", hr, "_", intensity_type, 
+                    "_across3_resample5_percentage_", resample_percent, 
+                    "_seed_", random_seed, "_self_quad_d_no_between_dummy.Rda",
                     sep = ""
                   )
                 )
                 
-                # Check if prediction output file does not exist
-                if (!file.exists(file_path)) {
+                # Check if output file does not exist or is older than 45 days
+                if (!file.exists(file_path) || (Sys.time() - file.info(file_path)$mtime) > as.difftime(45, units = "days")) {
                   
-                  # Increment index counter
-                  idx = idx + 1
-                  
-                  # Submit prediction job
+                  # Submit job to SLURM
                   system(
                     paste(
                       "srun -p model1,model2,pool1,model3,model4,pool3-bigmem -t 12:00:00 -o",
                       file.path(
                         data_dir, TMC, tissue, "random_resample",
                         paste(
-                          "pred_", cluster_num, "_", radius, "_", hr, "_", intensity_type, 
+                          "quad_", cluster_num, "_", radius, "_", hr, "_", intensity_type, 
                           "_across3_resample5_global_", resample_percent, "_", random_seed, ".out",
                           sep = ""
                         )
                       ),
-                      "-n 1 -c 4 --mem 46G Rscript ./modeling/simulation/predict_model_random_resample5_image_across3_global_self.R",
+                      "-n 1 -c 4 --mem 64G Rscript ./modeling/simulation/multipp_across3_single_image_random_resample_global_self_quad_d_no_between_dummy.R",
                       data_dir, tissue, intensity_type, cluster_num, radius, hr, resample_percent, random_seed, "&",
                       sep = " "
                     )
@@ -78,4 +75,3 @@ for (random_seed in 1:5) {
     }
   }
 }
-

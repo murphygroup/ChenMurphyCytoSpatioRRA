@@ -88,7 +88,6 @@ cell_num <- as.numeric(args[8])
 # Assign TMC based on tissue type
 TMC <- ifelse(tissue %in% c("SI", "LI"), "Stanford", "Florida")
 
-# Define data directory
 
 # Set random seed
 set.seed(3)

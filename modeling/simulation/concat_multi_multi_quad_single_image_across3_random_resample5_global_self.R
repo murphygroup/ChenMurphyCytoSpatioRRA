@@ -5,8 +5,8 @@ intensity_type = args[2]
 n = as.numeric(args[3])
 r = as.numeric(args[4])
 hr = as.numeric(args[5])
-img_idx = as.numeric(args[6])
-resample_num = args[7]
+percentage = args[6]
+seed = as.numeric(args[7])
 
 if (tissue == 'LI' | tissue == 'SI'){
   TMC = 'Stanford'
@@ -14,7 +14,7 @@ if (tissue == 'LI' | tissue == 'SI'){
   TMC = 'Florida'
 }
 for (radii in seq(100, r, 100)){
-  load(file.path(data_dir, TMC, tissue, 'random_resample', paste('quad_', n, '_', radii, '_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', resample_num, '_self_dummy_grid_eps_20.Rda', sep = '')))
+  load(file.path(data_dir, TMC, tissue, 'random_resample', paste('quad_', n, '_', radii, '_', hr, '_', intensity_type, '_across3_resample5_percentage_', percentage, '_seed_', seed, '_self_quad_d_no_between_dummy.Rda', sep = '')))
   current_quad = Quad_all$moadf
   print(current_quad[1:5,])
   rm(Quad_all)
@@ -37,14 +37,14 @@ rm(current_quad)
 gc()
 concatenated_quad = cbind(concatenated_quad, pattern_ID)
 concatenated_quad = cbind(concatenated_quad, caseweight)
-load(file.path(data_dir, TMC, tissue, 'random_resample', paste('quad_', n, '_', r, '_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', resample_num, '_self_dummy_grid_eps_20.Rda', sep = '')))
+load(file.path(data_dir, TMC, tissue, 'random_resample', paste('quad_', n, '_', r, '_', hr, '_', intensity_type, '_across3_resample5_percentage_', percentage, '_seed_', seed, '_self_quad_d_no_between_dummy.Rda', sep = '')))
 
 Quad_all_all = Quad_all
 Quad_all_all$moadf = concatenated_quad
 print(concatenated_quad[1:5,])
-save(Quad_all_all, file = file.path(data_dir, TMC, tissue, 'random_resample', paste('quad_', n, '_100-', r, '_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', resample_num, '_self_dummy_grid_eps_20.Rda', sep = '')))
+save(Quad_all_all, file = file.path(data_dir, TMC, tissue, 'random_resample', paste('quad_', n, '_100-', r, '_', hr, '_', intensity_type, '_across3_resample5_percentage_', percentage, '_seed_', seed, '_self_quad_d_no_between_dummy.Rda', sep = '')))
 
-for (i in seq(100, r, 100)){
-file.remove(file.path(data_dir, TMC, tissue, 'random_resample', paste('quad_', n, '_', i, '_', hr, '_', intensity_type, '_across3_', img_idx, '_resample5_', resample_num, '_self_dummy_grid_eps_20.Rda', sep = '')))
-}
+#for (i in seq(100, r, 100)){
+#file.remove(file.path(data_dir, TMC, tissue, 'random_resample', paste('quad_', n, '_', i, '_', hr, '_', intensity_type, '_across3_resample5_percentage_', percentage, '_seed_', seed, '_self_quad_d_no_between_dummy.Rda', sep = '')))
+#}
 

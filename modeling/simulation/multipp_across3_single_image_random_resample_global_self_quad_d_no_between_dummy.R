@@ -8,7 +8,7 @@ library(permute)
 library(data.table)
 
 # Set working directory
-script_dir <- "/home/haoranch/projects/HuBMAP/ppm/script"
+script_dir <- "./modeling/ppp"
 setwd(script_dir)
 
 # Load required functions
