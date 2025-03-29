@@ -1,11 +1,11 @@
 ### Reproducible Research Archive
 
-Haoran Chen and Robert F. Murphy\
-Computational Biology Department\
+Haoran Chen, Yangyuan Zhang and Robert F. Murphy\
+Ray and Stephanie Lane Computational Biology Department\
 School of Computer Science\
 Carnegie Mellon University
 
-Aug 23, 2023
+March 28, 2025
 
 This is the reproducible research archive that reproduces all results and figures in the manuscript "CytoSpatio: Learning cell type spatial relationships using multirange, multitype point process models". 
 
