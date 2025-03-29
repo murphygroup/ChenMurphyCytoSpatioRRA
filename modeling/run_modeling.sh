@@ -20,14 +20,10 @@ Rscript ./modeling/heterogeneity/run_multipp_across3_single_image_random_tile_se
 Rscript ./modeling/heterogeneity/run_concat_multi_multi_across3_single_image_random_tile_self.R $1
 Rscript ./modeling/heterogeneity/run_train_concatenated_multi_quad_across3_random_tile_self.R $1
 
-Rscript ./modeling/simulation/run_simulate_marking_resampling5_self.R $1
-Rscript ./modeling/simulation/run_simulate_random_resampling5_self.R $1
-Rscript ./modeling/simulation/run_multipp_across3_single_image_resample5_self.R $1
-Rscript ./modeling/simulation/run_concat_multi_multi_across3_single_image_resample5_self.R $1
-Rscript ./modeling/simulation/run_concat_multi_multi_across3_single_image_random_resample5_self.R $1
-Rscript ./modeling/simulation/run_concat_multi_multi_across3_single_image_random_resample5_self.R $1
-Rscript ./modeling/simulation/run_predict_model_resample5_image_across3_self.R $1
-Rscript ./modeling/simulation/run_predict_model_random_resample5_image_across3_self.R $1
+Rscript ./modeling/simulation/run_simulate_random_resampling5_self_same_pattern_global.R $1
+Rscript ./modeling/simulation/run_multipp_across3_single_image_random_resample_global_self.R $1
+Rscript ./modeling/simulation/run_predict_model_random_resample5_image_across3_global_self.R $1
+
 
 
 
